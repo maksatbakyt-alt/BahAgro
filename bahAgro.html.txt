@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>БахАгро — Профессиональные семена кукурузы и лука</title>
+    <style>
+        /* Базовые стили */
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; color: #333; background: #f4f7f5; }
+        
+        header { background: linear-gradient(135deg, #1b4d3e 0%, #113328 100%); color: white; padding: 60px 20px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        header h1 { margin: 0; font-size: 2.8em; letter-spacing: 1px; }
+        header p { font-size: 1.3em; color: #a3e2c9; margin-top: 10px; }
+        
+        .container { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
+        
+        /* Главные преимущества */
+        .grid { display: flex; gap: 25px; flex-wrap: wrap; margin-top: 30px; }
+        .card { background: white; padding: 30px; flex: 1; min-width: 280px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.04); transition: transform 0.3s ease; }
+        .card:hover { transform: translateY(-3px); }
+        .card h3 { color: #1b4d3e; margin-top: 0; border-bottom: 2px solid #e1eedd; padding-bottom: 12px; }
+        
+        /* КАТАЛОГ СОРТОВ */
+        .catalog-title { margin-top: 60px; color: #1b4d3e; text-align: center; font-size: 2em; }
+        .catalog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 25px; margin-top: 30px; }
+        
+        .catalog-card { 
+            background: white; border-radius: 12px; overflow: hidden; text-align: center; 
+            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between;
+        }
+        .catalog-card:hover { transform: translateY(-8px); box-shadow: 0 12px 24px rgba(0,0,0,0.15); }
+        
+        .corn-img { width: 100%; height: 200px; object-fit: cover; background-color: #eaedd7; transition: transform 0.5s ease; }
+        .catalog-card:hover .corn-img { transform: scale(1.05); }
+        
+        .catalog-info { padding: 20px; }
+        .catalog-card h4 { margin: 0 0 15px 0; color: #1b4d3e; font-size: 1.2em; }
+        
+        .catalog-card button { 
+            background: #e67e22; color: white; border: none; padding: 10px 15px; border-radius: 6px; 
+            cursor: pointer; font-weight: bold; width: 100%; transition: background 0.2s ease, transform 0.1s ease; font-size: 0.95em;
+        }
+        .catalog-card button:hover { background: #d35400; }
+        .catalog-card button:active { transform: scale(0.98); }
+
+        /* МОДАЛЬНЫЕ ОКНА */
+        .modal { 
+            display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; 
+            overflow: auto; background-color: rgba(0,0,0,0.5); backdrop-filter: blur(4px); opacity: 0; transition: opacity 0.3s ease;
+        }
+        .modal.show { display: block; opacity: 1; }
+        
+        .modal-content { 
+            background-color: #fff; margin: 5% auto; padding: 35px; border-radius: 16px; width: 85%; max-width: 750px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25); position: relative; line-height: 1.6; transform: translateY(-30px); transition: transform 0.3s ease;
+        }
+        .modal.show .modal-content { transform: translateY(0); }
+        
+        .modal-content h2 { color: #1b4d3e; margin-top: 0; border-bottom: 2px solid #e1eedd; padding-bottom: 12px; font-size: 1.8em; }
+        .close-btn { color: #999; float: right; font-size: 32px; font-weight: bold; cursor: pointer; transition: color 0.2s; margin-top: -10px; }
+        .close-btn:hover { color: #e74c3c; }
+
+        /* Таблицы характеристик */
+        .info-table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        .info-table td { padding: 10px; border-bottom: 1px solid #eee; vertical-align: top; }
+        .info-table td:first-child { font-weight: bold; color: #666; width: 40%; }
+        
+        .highlight-box { background: #e1eedd; padding: 15px; border-radius: 8px; border-left: 5px solid #27ae60; margin: 15px 0; }
+
+        .badge { background: #e67e22; color: white; padding: 6px 12px; border-radius: 20px; font-weight: bold; font-size: 0.9em; display: inline-block; margin-bottom: 15px; }
+        .btn { display: block; text-align: center; background: #27ae60; color: white; padding: 16px; text-decoration: none; border-radius: 8px; font-weight: bold; margin-top: 30px; font-size: 1.1em; transition: background 0.3s ease, transform 0.2s ease; box-shadow: 0 4px 10px rgba(39, 174, 96, 0.2); }
+        .btn:hover { background: #219653; transform: translateY(-2px); }
+        .docs { background: #e1eedd; padding: 25px; border-radius: 12px; margin-top: 40px; }
+        footer { text-align: center; padding: 30px; color: #777; font-size: 0.95em; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>БахАгро</h1>
+        <p>Семена кукурузы и лука для профессиональных фермеров Казахстана</p>
+    </header>
+
+    <div class="container">
+        <div style="text-align: center; margin-bottom: 40px;">
+            <div class="badge">Лабораторная всхожесть 96% – 98%</div>
+            <h2>Поставки напрямую из заводов. Полное соответствие Госреестру РК</h2>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <h3>🌽 Семена Кукурузы</h3>
+                <p>Высокая энергия прорастания, идеальная калибровка под сеялки точного высева. Протравлено фунгицидами и инсектицидами.</p>
+            </div>
+            <div class="card">
+                <h3>🧅 Семена Лука</h3>
+                <p>Проверенные гибриды с высокой устойчивостью к засухе и стрелкованию. Отлично подходят для климатических зон Казахстана.</p>
+            </div>
+        </div>
+
+        <h2 class="catalog-title">Каталог гибридов кукурузы FENIKKS</h2>
+        
+        <div class="catalog-grid">
+            <div class="catalog-card">
+                <img src="https://placehold.co/400x300/1b4d3e/white?text=FENIKKS+Aurora" alt="Аврора" class="corn-img">
+                <div class="catalog-info">
+                    <h4>FENIKKS Аврора</h4>
+                    <button onclick="openModal('m-aurora')">Подробнее</button>
+                </div>
+            </div>
+            <div class="catalog-card">
+                <img src="https://placehold.co/400x300/1b4d3e/white?text=FENIKKS+Atlant" alt="Атлант" class="corn-img">
+                <div class="catalog-info">
+                    <h4>FENIKKS Атлант</h4>
+                    <button onclick="openModal('m-atlant')">Подробнее</button>
+                </div>
+            </div>
+            <div class="catalog-card">
+                <img src="https://placehold.co/400x300/1b4d3e/white?text=FENIKKS+Bombay" alt="Бомбей" class="corn-img">
+                <div class="catalog-info">
+                    <h4>FENIKKS Бомбей</h4>
+                    <button onclick="openModal('m-bombay')">Подробнее</button>
+                </div>
+            </div>
+            <div class="catalog-card">
+                <img src="https://placehold.co/400x300/1b4d3e/white?text=FENIKKS+Gobi" alt="Гоби" class="corn-img">
+                <div class="catalog-info">
+                    <h4>FENIKKS Гоби</h4>
+                    <button onclick="openModal('m-gobi')">Подробнее</button>
+                </div>
+            </div>
+            <div class="catalog-card">
+                <img src="https://placehold.co/400x300/1b4d3e/white?text=FENIKKS+Spartak" alt="Спартак" class="corn-img">
+                <div class="catalog-info">
+                    <h4>FENIKKS Спартак</h4>
+                    <button onclick="openModal('m-spartak')">Подробнее</button>
+                </div>
+            </div>
+            <div class="catalog-card">
+                <img src="https://placehold.co/400x300/1b4d3e/white?text=FENIKKS+Takelau" alt="Такелау" class="corn-img">
+                <div class="catalog-info">
+                    <h4>FENIKKS Такелау</h4>
+                    <button onclick="openModal('m-takelau')">Подробнее</button>
+                </div>
+            </div>
+            <div class="catalog-card">
+                <img src="https://placehold.co/400x300/1b4d3e/white?text=FENIKKS+Bora+Bora" alt="Бора-Бора" class="corn-img">
+                <div class="catalog-info">
+                    <h4>FENIKKS Бора-Бора</h4>
+                    <button onclick="openModal('m-bora')">Подробнее</button>
+                </div>
+            </div>
+            <div class="catalog-card">
+                <img src="https://placehold.co/400x300/1b4d3e/white?text=FENIKKS+Celentano" alt="Челентано" class="corn-img">
+                <div class="catalog-info">
+                    <h4>FENIKKS Челентано</h4>
+                    <button onclick="openModal('m-celentano')">Подробнее</button>
+                </div>
+            </div>
+            <div class="catalog-card">
+                <img src="https://placehold.co/400x300/1b4d3e/white?text=FENIKKS+Francesca" alt="Франческа" class="corn-img">
+                <div class="catalog-info">
+                    <h4>FENIKKS Франческа</h4>
+                    <button onclick="openModal('m-francesca')">Подробнее</button>
+                </div>
+            </div>
+            <div class="catalog-card">
+                <img src="https://placehold.co/400x300/1b4d3e/white?text=FENIKKS+Universal" alt="Гибрид Универсальный" class="corn-img">
+                <div class="catalog-info">
+                    <h4>FENIKKS Универсальный</h4>
+                    <button onclick="openModal('m-hybrid')">Подробнее</button>
+                </div>
+            </div>
+            <div class="catalog-card">
+                <img src="https://placehold.co/400x300/1b4d3e/white?text=FENIKKS+Selena" alt="Селена" class="corn-img">
+                <div class="catalog-info">
+                    <h4>FENIKKS Селена</h4>
+                    <button onclick="openModal('m-selena')">Подробнее</button>
+                </div>
+            </div>
+            <div class="catalog-card">
+                <img src="https://placehold.co/400x300/1b4d3e/white?text=FENIKKS+Macao" alt="Макао" class="corn-img">
+                <div class="catalog-info">
+                    <h4>FENIKKS Макао</h4>
+                    <button onclick="openModal('m-macao')">Подробнее</button>
+                </div>
+            </div>
+            <div class="catalog-card">
+                <img src="https://placehold.co/400x300/1b4d3e/white?text=FENIKKS+O.Hassi" alt="О.Хасси" class="corn-img">
+                <div class="catalog-info">
+                    <h4>FENIKKS О.Хасси</h4>
+                    <button onclick="openModal('m-hassi')">Подробнее</button>
+                </div>
+            </div>
+            <div class="catalog-card">
+                <img src="https://placehold.co/400x300/1b4d3e/white?text=FENIKKS+Eros" alt="Эрос" class="corn-img">
+                <div class="catalog-info">
+                    <h4>FENIKKS Эрос</h4>
+                    <button onclick="openModal('m-eros')">Подробнее</button>
+                </div>
+            </div>
+        </div>
+
+        <a href="https://wa.me" class="btn" target="_blank">💬 Связаться с нами в WhatsApp</a>
+
+        <footer>
+            <p>© 2026 ТОО/ИП БахАгро. Доставка по всему Казахстану.</p>
+        </footer>
+    </div>
+
+    <div id="m-aurora" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('m-aurora')">&times;</span>
+            <h2>FENIKKS Аврора</h2>
+            <div class="highlight-box">
+                Раннеспелый гибрид с высокой и стабильной урожайностью в различных климатических условиях.
+            </div>
+            <table class="info-table">
+                <tr><td>Вегетационный период</td><td>103-106 дней (сумма активных температур ≥10°C в пределах 2100-2150°C)</td></tr>
+                <tr><td>Урожайность</td><td>12 - 14 т/га</td></tr>
+                <tr><td>Характеристики растения</td><td>Высота: 250 см, крепление початка: 90-92 см, 17 листьев</td></tr>
+                <tr><td>Параметры початка</td><td>Длина: 19 см, диаметр: 4.9 см, 16 рядов, 36-40 зерен в ряду. Зерна желтые, зубовидные</td></tr>
+                <tr><td>Качество зерна</td><td>Белок: 9.68%, жир: 4.59%, крахмал: 72.67%, лизин: 0.30%. Насыпная плотность: 742 г/л</td></tr>
+                <tr><td>Устойчивость</td><td>Устойчив к различным заболеваниям и насекомым-вредителям</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="m-atlant" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('m-atlant')">&times;</span>
+            <h2>FENIKKS Атлант</h2>
+            <div class="highlight-box">
+                Гибрид хорошо адаптируется к различным почвенным и климатическим условиям выращивания.
+            </div>
+            <table class="info-table">
+                <tr><td>Урожайность</td><td>14 - 15 т/га</td></tr>
+                <tr><td>Характеристики растения</td><td>Высота: 280 см, крепление початка: 112 см</td></tr>
+                <tr><td>Параметры початка</td><td>Длина: 19-19.7 см, толщина: 5-5.5 см, 16 рядов, 34 зерна в ряду. Зерно полузубовидное</td></tr>
+                <tr><td>Качество зерна</td><td>Протеин: 9.12%, жир: 3.65%, крахмал: 76.2%, лизин: 0.278%. Масса 1000 зерен: 373 г</td></tr>
+                <tr><td>Устойчивость</td><td>Высоко устойчив к кукурузной мозаике, парше и ржавчине. Устойчив к карликовой мозаике, пятнистости листьев, стеблевой гнили, головне и мотыльку.</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="m-bombay" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('m-bombay')">&times;</span>
+            <h2>FENIKKS Бомбей</h2>
+            <div class="highlight-box">
+                Высокоурожайный гибрид. Устойчив к полеганию, высоким и низким температурам, засухоустойчив.
+            </div>
+            <table class="info-table">
+                <tr><td>Вегетационный период</td><td>125 дней</td></tr>
+                <tr><td>Урожайность</td><td>15 - 16 т/га</td></tr>
+                <tr><td>Характеристики растения</td><td>Высота: 300-310 см, крепление початка: 122-125 см, 20 листьев</td></tr>
+                <tr><td>Параметры початка</td><td>Трубчатой формы, длина: 19-19.6 см, 16-18 рядов. Зерно желтое, полузубовидное</td></tr>
+                <tr><td>Качество зерна</td><td>Белок: 9.87%, жир: 3.84%, крахмал: 76.39%, лизин: 0.26%. Масса 1000 зерен: 370 г. Насыпная плотность: 741 г/л</td></tr>
+                <tr><td>Устойчивость</td><td>Устойчив к головне, крупной и серой пятнистости листьев, стеблевой и початковой гнили.</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="m-gobi" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('m-gobi')">&times;</span>
+            <h2>FENIKKS Гоби</h2>
+            <div class="highlight-box">
+                ФАО 520. Самый сильный гибрид в своем ФАО с наилучшей устойчивостью к болезням. Рекомендуется выращивать на фоне повышенных температур.
+            </div>
+            <table class="info-table">
+                <tr><td>Вегетационный период</td><td>125 дней (сумма активных температур ≥10°C в 2600-2800°C)</td></tr>
+                <tr><td>Урожайность</td><td>14 - 15 т/га</td></tr>
+                <tr><td>Характеристики растения</td><td>Высота: 280-290 см, крепление початка: 100-105 см, 20 листьев</td></tr>
+                <tr><td>Параметры початка</td><td>Трубчатого типа, длина: 18-24 см, диаметр: 4.8 см, 18-20 рядов, 35-38 зерен. Желтое, полузубовидное</td></tr>
+                <tr><td>Качество зерна</td><td>Протеин: 8.86%, жир: 3.5%, крахмал: 74.01%, лизин: 0.28%. Масса 1000 зерен: 333 г. Плотность: 778 г/л</td></tr>
+                <tr><td>Устойчивость</td><td>Засухоустойчив. Высокая устойчивость к полеганию, короткой мозаике, грубой усушке. Устойчив к колосовой гнили.</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="m-spartak" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('m-spartak')">&times;</span>
+            <h2>FENIKKS Спартак</h2>
+            <div class="highlight-box">
+                Гибрид характеризуется быстрой влагоотдачей, хорошо развитой корневой системой и устойчивостью к полеганию.
+            </div>
+            <table class="info-table">
+                <tr><td>Вегетационный период</td><td>127 дней (активная сумма температур ≥10°C от 2650°C)</td></tr>
+                <tr><td>Урожайность</td><td>23.2 - 25 т/га (при влажности 25%)</td></tr>
+                <tr><td>Характеристики растения</td><td>Высота: 285 см, крепление початка: 120 см</td></tr>
+                <tr><td>Параметры початка</td><td>Длина: 20-22 см, 16-20 рядов, 39 зерен в ряду. Зерно желтое, полузубовидное</td></tr>
+                <tr><td>Качество зерна</td><td>Протеин: 8.95%, жир: 3.6%, крахмал: 74.42%, лизин: 0.31%. Масса 1000 зерен: 348 г. Объемный вес: 781 г/л</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="m-takelau" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('m-takelau')">&times;</span>
+            <h2>FENIKKS Такелау</h2>
+            <div class="highlight-box">
+                Гибрид отличается выдающейся устойчивостью к засухе и к высоким температурам. Темно-зеленые, компактные листья.
+            </div>
+            <table class="info-table">
+                <tr><td>Урожайность</td><td>18.6 - 19.8 т/га</td></tr>
+                <tr><td>Характеристики растения</td><td>Высота: 310 см, крепление початка: 100 см</td></tr>
+                <tr><td>Параметры початка</td><td>Цилиндрический. Длина: 20.5 см, 16-18 рядов, 38 зерен в ряду. Зерно желтое, полузубовидное</td></tr>
+                <tr><td>Качество зерна</td><td>Белок: 11.33%, жир: 4.65%, крахмал: 73.45%, лизин: 0.34%. Масса 1000 зерен: 362 г. Плотность: 753 г/л</td></tr>
+                <tr><td>Устойчивость</td><td>Высокая устойчивость к стеблевой и початковой гнили, пятнистости листьев.</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="m-bora" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('m-bora')">&times;</span>
+            <h2>FENIKKS Бора-Бора</h2>
+            <div class="highlight-box">
+                Мощный гибрид с длинным початком трубчатой формы и высокой массой зерен.
+            </div>
+            <table class="info-table">
+                <tr><td>Вегетационный период</td><td>125 дней</td></tr>
+                <tr><td>Характеристики растения</td><td>Высота: 328 см, крепление початка: 108 см, 19-21 лист</td></tr>
+                <tr><td>Параметры початка</td><td>Трубчатой формы. Длина: 27.8 см, 16-18 рядов. Зерно желтое, зубовидное</td></tr>
+                <tr><td>Качество зерна</td><td>Белок: 11.33%, жир: 4.65%, крахмал: 73.45%, лизин: 0.34%. Масса 1000 зерен: 385 г. Плотность: 753 г/л</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="m-celentano" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('m-celentano')">&times;</span>
+            <h2>FENIKKS Челентано</h2>
+            <div class="highlight-box">
+                Предназначен для выращивания на Юго-Востоке Казахстана. Рекомендуемая норма высева: 70 000-75 000 семян/га.
+            </div>
+            <table class="info-table">
+                <tr><td>Вегетационный период</td><td>135 дней (сумма активных температур ≥10°C в пределах 2700-2900 °C)</td></tr>
+                <tr><td>Урожайность</td><td>14.2 - 15.2 т/га</td></tr>
+                <tr><td>Характеристики растения</td><td>Высота: 350-355 см, крепление початка: 98-100 см, 21 лист</td></tr>
+                <tr><td>Параметры початка</td><td>Длина: 23.5 см, 16-18 рядов. Зерно желтое, зубовидное</td></tr>
+                <tr><td>Качество зерна</td><td>Белок: 10.70%, жир: 3.98%, крахмал: 71.83%. Масса 1000 зерен: 425 г. Объемный вес: 756 г/л</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="m-francesca" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('m-francesca')">&times;</span>
+            <h2>FENIKKS Франческа</h2>
+            <div class="highlight-box">
+                Высокая влагоотдача (высыхание при зеленом стебле). Растение компактное, хорошо вентилируемое.
+            </div>
+            <table class="info-table">
+                <tr><td>Вегетационный период</td><td>130 дней</td></tr>
+                <tr><td>Урожайность</td><td>22.9 т/га (при влажности 20%)</td></tr>
+                <tr><td>Характеристики растения</td><td>Высота: 280-290 см, крепление початка: 110-115 см, 21 лист</td></tr>
+                <tr><td>Параметры початка</td><td>Трубчатый. Длина: 20-25.5 см, диаметр 4.7 см, 16-18 рядов. Зерно желтое, полузубовидное</td></tr>
+                <tr><td>Качество зерна</td><td>Протеин: 8.84%, жир: 3.43%, крахмал: 74.63%, лизин: 0.29%. Масса 1000 зерен: 338.5 г. Объемный вес: 798 г/л</td></tr>
+                <tr><td>Устойчивость</td><td>Высокая устойчивость к болезням.</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="m-hybrid" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('m-hybrid')">&times;</span>
+            <h2>FENIKKS Универсальный (Специальный)</h2>
+            <div class="highlight-box">
+                Широко адаптируемый сорт, пригоден для выращивания в сухих и влажных условиях.
+            </div>
+            <table class="info-table">
+                <tr><td>Урожайность</td><td>14.3 - 15.3 т/га</td></tr>
+                <tr><td>Характеристики растения</td><td>Высота: 280 см, крепление початка: 112 см</td></tr>
+                <tr><td>Параметры початка</td><td>Длина: 19.7 см, толщина: 5.4 см, 16 рядов, 34 зерна в ряду. Зерно желтое, полузубовидное</td></tr>
+                <tr><td>Качество зерна</td><td>Протеин: 9.12%, жир: 3.65%, крахмал: 76.2%, лизин: 0.28%. Масса 1000 зерен: 373 г</td></tr>
+                <tr><td>Устойчивость</td><td>Высоко устойчив к кукурузной мозаике, парше и ржавчине. Устойчив к карликовой мозаике, пятнистости листьев, стеблевой гнили, головне и мотыльку.</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="m-selena" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('m-selena')">&times;</span>
+            <h2>FENIKKS Селена</h2>
+            <div class="highlight-box">
+                Отличный сорт со стабильными показателями. Норма высева: 60 000 - 65 000 семян/га.
+            </div>
+            <table class="info-table">
+                <tr><td>Вегетационный период</td><td>120 дней</td></tr>
+                <tr><td>Урожайность</td><td>16.3 - 19.1 т/га</td></tr>
+                <tr><td>Характеристики растения</td><td>Высота: 294 см, крепление початка: 94-100 см, 19 листьев</td></tr>
+                <tr><td>Параметры початка</td><td>Цилиндрическая форма. Длина: 27.7 см, 16-18 зерен в ряду. Зерно желтое</td></tr>
+                <tr><td>Качество зерна</td><td>Протеин: 10.08%, жир: 4.35%, крахмал: 72.66%, лизин: 0.28%. Масса 1000 зерен: 359 г. Объемный вес: 762 г/л</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="m-macao" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('m-macao')">&times;</span>
+            <h2>FENIKKS Макао</h2>
+            <div class="highlight-box">
+                Отличается высокой натурой зерна и быстрой влагоотдачей (высыхание при зеленом стебле).
+            </div>
+            <table class="info-table">
+                <tr><td>Вегетационный период</td><td>130 дней (активная сумма температур ≥10°C в пределах 2550-2750°C)</td></tr>
+                <tr><td>Урожайность</td><td>23.5 т/га (при влажности 25%)</td></tr>
+                <tr><td>Характеристики растения</td><td>Высота: 291 см, крепление початка: 100 см, 20 листьев</td></tr>
+                <tr><td>Параметры початка</td><td>Трубчатый. Длина: 19.2 см, диаметр: 5.5 см, 18 рядов, от 39 зерен в ряду. Зерна желтые, полузубовидные</td></tr>
+                <tr><td>Качество зерна</td><td>Белок: 9.46%, жир: 3.24%, крахмал: 75.38%, лизин: 0.27%. Масса 1000 зерен: 356 г. Объемный вес: 731 г/л</td></tr>
+                <tr><td>Устойчивость</td><td>Высокий уровень устойчивости к болезням.</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="m-hassi" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('m-hassi')">&times;</span>
+            <h2>FENIKKS О.Хасси</h2>
+            <div class="highlight-box">
+                Ультраранний сорт, формирующий от 4 до 8 початков на стебле. Густота стояния при уборке: 65 000 растений/га.
+            </div>
+            <table class="info-table">
+                <tr><td>Вегетационный период</td><td>117 дней</td></tr>
+                <tr><td>Урожайность</td><td>10 - 10.6 т/га</td></tr>
+                <tr><td>Характеристики растения</td><td>Высота: 290 см, крепление початка: 100-110 см, 19-20 листьев</td></tr>
+                <tr><td>Параметры початка</td><td>Цилиндрический. Длина: 16.3 см, толщина 4.9 см, 15-16 рядов. Зерно зубовидное, желтое</td></tr>
+                <tr><td>Качество зерна</td><td>Протеин: 8.7%, жир: 3.8%, крахмал: 73.4%, лизин: 0.40%. Масса 1000 зерен: 353 г. Насыпной вес: 697 г/л</td></tr>
+                <tr><td>Устойчивость</td><td>Устойчив к мелкой/крупной пятнистости, стеблевой гнили, мучнистой росе и карликовой мозаике.</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="m-eros" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('m-eros')">&times;</span>
+            <h2>FENIKKS Эрос</h2>
+            <div class="highlight-box">
+                Сорт с очень высокой натурной массой зерна. Отлично адаптирован к теплым регионам.
+            </div>
+            <table class="info-table">
+                <tr><td>Вегетационный период</td><td>130 дней (сумма активных температур ≥10℃ в пределах 2700-2800℃)</td></tr>
+                <tr><td>Урожайность</td><td>16.8 - 18.1 т/га</td></tr>
+                <tr><td>Характеристики растения</td><td>Высота: 315 см, крепление початка: 100-110 см, 21 лист</td></tr>
+                <tr><td>Параметры початка</td><td>Длина: 20-22 см, 16-20 рядов, 39-45 зерен в ряду. Зерно желтое, полузубовидное</td></tr>
+                <tr><td>Качество зерна</td><td>Протеин: 9.54%, жир: 3.07%, крахмал: 75.26%, лизин: 0.30%. Масса 1000 зерен: 386 г. Натурная масса: 804 г/л</td></tr>
+                <tr><td>Устойчивость</td><td>Устойчив к початковой гнили, стеблевой гнили и крупной пятнистости.</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function openModal(id) {
+            const modal = document.getElementById(id);
+            modal.style.display = 'block';
+            setTimeout(() => { modal.classList.add('show'); }, 10);
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal(id) {
+            const modal = document.getElementById(id);
+            modal.classList.remove('show');
+            setTimeout(() => { modal.style.display = 'none'; }, 300);
+            document.body.style.overflow = 'auto';
+        }
+
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                closeModal(event.target.id);
+            }
+        }
+    </script>
+</body>
+</html>
