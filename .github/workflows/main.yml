@@ -1,0 +1,40 @@
+name: Technical Security Audit
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  workflow_dispatch:
+
+jobs:
+  security-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run Gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run Semgrep Analysis
+        uses: semgrep/semgrep-action@v1
+        with:
+          config: p/default
+
+      - name: OWASP Dependency-Check
+        uses: dependency-check/Dependency-Check_Action@main
+        with:
+          project: 'Audit'
+          path: '.'
+          format: 'HTML'
+          out: 'reports'
+
+      - name: Save Audit Reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Security-Audit-Report
+          path: reports/
