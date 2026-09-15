@@ -463,7 +463,9 @@ const seedVideos = [
     { name: 'Спартак', videoUrl: 'spartakV.mp4' },
     { name: '958Plus', videoUrl: '958V.mp4' },
     { name: 'Челентано', videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ' },
-    { name: 'Эрос', videoUrl: 'erosV.mp4' }
+    { name: 'Эрос', videoUrl: 'erosV.mp4' },
+    { name: 'Афина+ФАО 380', videoUrl: 'Afina FAO380.mp4'},
+    { name: 'Эрос, ФАО 650', videoUrl: 'Eros+FAO650.mp4' }
 ];
 
 let currentCarouselIndex = 0;
