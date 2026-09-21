@@ -466,7 +466,7 @@ const seedVideos = [
     { name: 'Эрос', videoUrl: 'erosV.mp4' },
     { name: 'Афина+ФАО 380', videoUrl: 'Afina FAO380.mp4'},
     { name: 'Эрос, ФАО 650', videoUrl: 'Eros+FAO650.mp4' },
-    { name: 'Афина + ФАО380', videoUrl: 'Afina+fao380'}
+    { name: 'new Афина + ФАО380', videoUrl: 'Afinafao380'}
 ];
 
 let currentCarouselIndex = 0;
