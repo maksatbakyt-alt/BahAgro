@@ -272,6 +272,7 @@ function renderCatalog() {
         description.className = 'catalog-info-description';
         description.textContent = `${t.faoLabel}: ${h.fao} | ${t.yieldLabel}: ${h.yield} ${t.yieldUnit}`;
 
+        // --- FIX: Create and append the Details button ---
         const detailsButton = document.createElement('button');
         detailsButton.className = 'btn-primary details-btn';
         detailsButton.textContent = t.detailsButton;
@@ -279,7 +280,7 @@ function renderCatalog() {
 
         info.appendChild(title);
         info.appendChild(description);
-        info.appendChild(detailsButton);
+        info.appendChild(detailsButton); // Appending the button here
 
         card.appendChild(compareCheckbox);
         card.appendChild(imageWrapper);
