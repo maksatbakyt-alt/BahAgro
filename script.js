@@ -1,14 +1,19 @@
 const hybrids = [
-    { id: 'afina', name: 'Афина', fao: '270-350', yield: 12, purpose: 'Зерно', height: '270', earLength: '18', rows: '14-18', grainsPerRow: '36', thousandSeedsMass: '335', img: 'afina.jpeg', desc: 'Ранний зерновой гибрид, компактный и надежный на засушливых полях.' },
-    { id: 'aurora', name: 'Аврора', fao: 360, yield: 14, purpose: 'Зерно', height: '280', earLength: '18-20', rows: '16-18', grainsPerRow: '36', thousandSeedsMass: '335', img: 'https://placehold.co/400x300/1b4d3e/white?text=FENIKKS+Aurora', desc: 'Стабильный зерновой гибрид с высоким потенциалом урожайности и отличной адаптацией.' },
-    { id: 'atlant', name: 'Атлант', fao: 480, yield: 16, purpose: 'Зерно', height: '200', earLength: '19', rows: '18-20', grainsPerRow: '38', thousandSeedsMass: '370', img: 'atlant.jpg.jpg', desc: 'Сильный зерновой гибрид для интенсивного производства и хорошей калибровки.' },
-    { id: 'gobi', name: 'Гоби', fao: 520, yield: 18, purpose: 'Зерно', height: '310', earLength: '20-24', rows: '18-20', grainsPerRow: '40', thousandSeedsMass: '358', img: 'gobi.jpg', desc: 'Чемпион 2018. Универсальный зерновой гибрид с отличной урожайностью и гибкой технологией выращивания.' },
-    { id: 'spartak', name: 'Спартак', fao: 550, yield: 19, purpose: 'Зерно', height: '340', earLength: '22-26', rows: '16-20', grainsPerRow: '42', thousandSeedsMass: '361', img: 'spartak.jpg', desc: 'Мощный зерновой гибрид с хорошим иммунитетом к полеганию и стабильными початками.' },
-    { id: '958plus', name: '958Plus', fao: 580, yield: 20, purpose: 'Зерно', height: '280', earLength: '25', rows: '14-18', grainsPerRow: '46', thousandSeedsMass: '365', img: '958.jpg', desc: 'Широкозерный высокопродуктивный гибрид для интенсивной агротехники.' },
-    { id: 'francesca', name: 'Франческа', fao: 650, yield: 22, purpose: 'Зерно', height: '400', earLength: '26-30', rows: '18-20', grainsPerRow: '42', thousandSeedsMass: '380', img: 'francheska.jpeg', desc: 'Позднеспелый зерновой гибрид с мощным потенциалом и высокой массой зерна.' },
-    { id: 'takelau', name: 'Такелау', fao: 580, yield: 19, purpose: 'Силос', height: '330', earLength: '24-28', rows: '16-20', grainsPerRow: '46', thousandSeedsMass: '365', img: 'takelau.jpg', desc: 'Силосный гибрид с хорошей урожайностью зеленой массы и стабильным ростом.' },
-    { id: 'celentano', name: 'Челентано', fao: 620, yield: 22, purpose: 'Силос', height: '420', earLength: '24-28', rows: '18-20', grainsPerRow: '44', thousandSeedsMass: '375', img: 'chelentano.jpg', desc: 'Силосный гибрид с мощным ростом и высоким качеством кормовой массы.' },
-    { id: 'eros', name: 'Эрос', fao: 650, yield: 26, purpose: 'Силос', height: '310', earLength: '19', rows: '16', grainsPerRow: '38', thousandSeedsMass: '359', img: 'Eros.jpg', desc: 'Высокоурожайный силосный гибрид с отличным накоплением массы на ранних сроках.' }
+    { id: 'afina', name: 'Афина', fao: '270-350', yield: 12, purpose: 'Зерно', height: '270', earLength: '18', rows: '14-18', grainsPerRow: '36', thousandSeedsMass: '335', img: 'afina.jpeg', desc: 'Раннеспелый гибрид с хорошей всхожестью и стабильной урожайностью. Подходит для стандартной технологии возделывания.' },
+    { id: 'aurora', name: 'Аврора', fao: 360, yield: 14, purpose: 'Зерно', height: '280', earLength: '18-20', rows: '16-18', grainsPerRow: '36', thousandSeedsMass: '335', img: 'aurora.jpg', desc: 'Период роста от всходов до созревания составляет 103-106 дней, активная аккумулированная температура ≥10°C и 2100-2150°C. Чрезвычайно раннеспелый сорт. Листовые влагалища у сеянцев фиолетовые, стебли взрослых растений светло-фиолетовые. Высота растения около 250 см, положение початка 92 см, масса 1000 зерен ~742 г/л (объемный вес). Высокая и стабильная урожайность, сильная комплексная устойчивость к болезням и вредителям.' },
+    { id: 'atlant', name: 'Атлант', fao: 480, yield: 16, purpose: 'Зерно', height: '280', earLength: '19.7', rows: '16-18', grainsPerRow: '34', thousandSeedsMass: '373', img: 'atlant.jpg', desc: 'Растение компактное, хорошо вентилируемое и имеет хорошую светопроницаемость; высота растения около 280 см, высота прикрепления початка 112 см, длина початка 19,7 см. Высокая урожайность и широкая адаптивность. Сильная устойчивость к карликовой мозаике, пятнистости листьев, стеблевой гнили и другим болезням.' },
+    { id: 'gobi', name: 'Гоби', fao: 520, yield: 18, purpose: 'Зерно', height: '288', earLength: '18-24', rows: '18-20', grainsPerRow: '35-38', thousandSeedsMass: '333', img: 'gobi.jpg', desc: 'Подходящая область: районы с аккумулированной температурой ≥10°C и 2600-2800°C. Вегетационный период примерно 125 дней. Тип растения компактный, высота 288 см, прикрепление початка около 105 см. Длина початка 18-24 см, 18-20 рядов, зерно желтое, масса 1000 зерен 333 г. Пробная масса 778 г/л. Высокая устойчивость к полеганию и засухе; высокая устойчивость к колосовой и прочим распространённым болезням.' },
+    { id: 'spartak', name: 'Спартак', fao: 550, yield: 19, purpose: 'Зерно', height: '307', earLength: '22-26', rows: '16-20', grainsPerRow: '39', thousandSeedsMass: '348', img: 'spartak.jpg', desc: 'Весенний посев имеет вегетационный период около 127 дней. Тип растения полукомпактный, высота около 285–307 см, початок красный, длина 20-22 см. Хорошо развитая корневая система, высокая устойчивость к полеганию и быстрая влагоотдача.' },
+    { id: '958plus', name: '958Plus', fao: 580, yield: 20, purpose: 'Зерно', height: '280', earLength: '25', rows: '14-18', grainsPerRow: '46', thousandSeedsMass: '365', img: '958.jpg', desc: 'Широкозерный высокопродуктивный гибрид для интенсивной агротехники. Подходит под современные технологии с высокой ступенью удобрений и орошения.' },
+    { id: 'francesca', name: 'Франческа', fao: 650, yield: 22, purpose: 'Зерно', height: '287', earLength: '25.5', rows: '16-18', grainsPerRow: '42', thousandSeedsMass: '339', img: 'francheska.jpeg', desc: 'Срок вегетации весеннего посева ~130 дней. Полукомпактный тип, высота около 287 см, початок длиной до 25,5 см. Высокая урожайность, большое зерно и хороший объемный вес; рекомендован для плодородных почв и орошения.' },
+    { id: 'takelau', name: 'Такелау', fao: 580, yield: 19, purpose: 'Силос', height: '310', earLength: '20.5', rows: '16-18', grainsPerRow: '38', thousandSeedsMass: '362', img: 'takelau.jpg', desc: 'Листья темно-зелёные, компактные; высота растения около 310 см, положение початка около 100 см. Колос цилиндрический, длина початка около 20,5 см, выход семян 88,0%. Высокая устойчивость к стеблевой и початковой гнили, хорошая засухоустойчивость.' },
+    { id: 'celentano', name: 'Челентано', fao: 620, yield: 22, purpose: 'Силос', height: '420', earLength: '24-28', rows: '18-20', grainsPerRow: '44', thousandSeedsMass: '375', img: 'chelentano.jpg', desc: 'Силосный гибрид с мощным ростом и высоким качеством кормовой массы. Подходит для орошения и интенсификаций; хорошие выходы зеленой массы.' },
+    { id: 'eros', name: 'Эрос', fao: 650, yield: 26, purpose: 'Силос', height: '315', earLength: '20-22', rows: '16-20', grainsPerRow: '39-45', thousandSeedsMass: '386', img: 'Eros.jpg', desc: 'Подходящие районы: активная совокупная температура ≥10℃ и 2700-2800℃. Вегетация около 130 дней. Полукомпактный тип, высокая урожайность и хорошие параметры качества зерна: натурная масса зерна 804 г/л, сырой протеин ~9.54%.' },
+    { id: 'bombey', name: 'Бомбей', fao: 600, yield: 16, purpose: 'Зерно', height: '307.5', earLength: '19.6', rows: '16-18', grainsPerRow: '36-40', thousandSeedsMass: '370', img: 'bombey.jpg', desc: 'От появления всходов до созревания около 125 дней. Сеянцы с пурпурными влагалищами, листья тёмно-зелёные, пыльники фиолетовые. Полукомпактный тип, высота около 307,5 см, длина початка около 19,6 см. Высокая урожайность в региональных испытаниях и хорошая устойчивость к болезням и полеганию.' },
+    { id: 'bora-bora', name: 'Бора-Бора', fao: 620, yield: 19, purpose: 'Зерно', height: '328', earLength: '27.8', rows: '16-18', grainsPerRow: '?', thousandSeedsMass: '385', img: 'bora-bora.jpg', desc: 'Период от всходов до созревания ~125 дней. Сеянцы с пурпурными влагалищами и тёмно-зелёными листьями, края пурпурные. Тип растения полукомпактный, высота около 328 см, длина початка 27,8 см. Высокий вес 100 зерен и плотность зерна; отличная адаптивность и устойчивость к болезням.' },
+    { id: 'selena', name: 'Селена', fao: 610, yield: 19, purpose: 'Зерно', height: '294', earLength: '27.7', rows: '16-18', grainsPerRow: '38-42', thousandSeedsMass: '359', img: 'selena.jpg', desc: 'Яровая кукуруза, созревает за ~120 дней. Полукомпактный тип, высота растения 294 см, початок цилиндрический длиной ~27,7 см, 16-18 рядов, масса 1000 зерен около 359 г. Пробная масса 762 г/л. Проявляет высокую урожайность в региональных испытаниях.' },
+    { id: 'macao', name: 'Макао', fao: 650, yield: 23, purpose: 'Зерно', height: '291', earLength: '19.2', rows: '18', grainsPerRow: '38.8', thousandSeedsMass: '356', img: 'macao.jpg', desc: 'Вегетационный период весеннего посева ~130 дней. Тип полукомпактный, высота растения 291 см, длина початка 19,2 см, 18 рядов, выход семян 90,2%. Высокая натура зерна и устойчивость к болезням.' },
+    { id: 'o-hassi', name: 'О.Хасси', fao: 500, yield: 10.6, purpose: 'Зерно', height: '290', earLength: '16.3', rows: '15-16', grainsPerRow: '30', thousandSeedsMass: '353', img: 'o-hassi.jpg', desc: 'Компактный тип, вегетационный период около 117 дней. Высота растения около 290 см, початок цилиндрический длиной около 16,3 см, 15-16 рядов. Высокая устойчивость к мелким и крупным пятнистостям и другим болезням. Рекомендованная плотность посадки около 65 000 растений/га.' }
 ];
 
 let compareList = [];
@@ -85,11 +90,12 @@ const translations = {
         chatIntro: 'Здравствуйте! Я цифровой агроном. Напишите ваш регион и тип почвы, и я помогу подобрать идеальный гибрид кукурузы.',
         chatPlaceholder: 'Введите ваш вопрос...',
         chatDefaultReply: 'Для точного ответа мне нужно больше данных. Подскажите, планируете ли вы полив (орошение)?',
-        chatSouthReply: 'Для южных регионов с хорошим орошением отлично подойдет FENIKKS Челентано (ФАО 510). Максимальная отдача зерна!',
+        chatSouthReply: 'Для южных регионов с хорошим орошением отлично подойдет FENIKKS Челентано (ФАО 510). Максимальная урожайность!' ,
         championBadge: '⭐ Чемпион 2018',
         videoCarouselTitle: '🎥 Видеообзоры гибридов кукурузы'
     },
     kz: {
+        // unchanged for brevity in this commit — existing translations kept
         navLogo: '🌽 БахАгро',
         searchPlaceholder: 'Гибридты іздеу...',
         langTitle: 'Тілді ауыстыру',
@@ -104,7 +110,7 @@ const translations = {
         tableIntro: 'FENIKKS жүгері гибридтері өнімділігі жоғары және ауруға, құрғақшылыққа төзімділігімен ерекшеленеді.',
         table1Title: 'Жүгері (дана)',
         table2Title: 'Жүгері (силос)',
-        tableHeaders: ['Түрі', 'ФАО', 'Өсімдік биіктігі, см', 'Жүгері орамы ұз., см', 'Қалталар саны', 'Қатардағы дәндер, шт.', '1000 дәннің салмағы, г', 'Өнім көлемі, т/га'],
+        tableHeaders: ['Түрі', 'ФАО', 'Өсімдік биіктігі, см', 'Жүгері орамы ұз., см', 'Қалталар саны', 'Қатардағы дәндер, шт.', '1000 дәннің салмағы, г', 'Өнім, т/га'],
         toolsTitle: 'Агроном құралдары',
         wizardHeader: '🎯 Гибридті таңдау шебері',
         wizardRegionLabel: 'Егу аймағы:',
@@ -125,7 +131,7 @@ const translations = {
         cert1Title: '🔬 96-98%',
         cert1Desc: 'Зертханалық өнгіштік',
         cert2Title: '📜 ҚР мемлекеттік тізілімі',
-        cert2Desc: 'Барлық гибридтер сертификатталған',
+        cert2Desc: 'Барлы�� гибридтер сертификатталған',
         cert3Title: '🛡️ Өңделген',
         cert3Desc: 'Фунгицидтер + инсектицидтер',
         faqTitle: 'Жиі қойылатын сұрақтар',
@@ -156,7 +162,7 @@ const translations = {
         calcResultOutro: 'Қажет болады',
         bagsLabel: 'егерек бірлігі (қапшықтар)',
         chatHeader: '🤖 AI Агроном БахАгро',
-        chatIntro: 'Сәлеметсіз бе! Мен цифрлық агрономмын. Өзіңіздің аймағыңызды және топырақ түрін жазыңыз, мен ең жақсы гибридті таңдауға көмектесемін.',
+        chatIntro: 'Сәлеметсіз бе! Мен цифрлық агрономмын. Өзіңіздің аймағыңызды және топырақ түрін жазыңыз, мен ең жақсы гибридті ұсынамын.',
         chatPlaceholder: 'Сұрағыңызды енгізіңіз...',
         chatDefaultReply: 'Толық жауап беру үшін қосымша ақпарат қажет. Сіз суару жоспарлап отырсыз ба?',
         chatSouthReply: 'Оңтүстік аймақтарда суару жақсы болса, FENIKKS Челентано (ФАО 510) өте қолайлы. Өнімділігі жоғары!',
@@ -299,8 +305,21 @@ function filterCatalog() {
 function openModal(id) {
     const h = hybrids.find(item => item.id === id);
     const t = translations[currentLang];
+
+    // Defensive: if hybrid not found, show a default modal instead of throwing
+    if (!h) {
+        document.getElementById('modal-title').innerText = t.detailsButton;
+        document.getElementById('modal-desc').innerText = 'Информация по этому гибриду временно недоступна.';
+        document.getElementById('modal-table').innerHTML = '';
+        const modal = document.getElementById('hybrid-modal');
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+        return;
+    }
+
     document.getElementById('modal-title').innerHTML = `FENIKKS ${h.name} ${id === 'gobi' ? `<span class="champion-badge">(${t.championBadge})</span>` : ''}`;
-    document.getElementById('modal-desc').innerText = h.desc;
+    // Preserve line breaks in descriptions
+    document.getElementById('modal-desc').innerHTML = (h.desc || '').replace(/\n/g, '<br>');
     document.getElementById('modal-table').innerHTML = `
         <tr><td>${t.purposeLabel}</td><td>${h.purpose}</td></tr>
         <tr><td>${t.faoLabel}</td><td>${h.fao}</td></tr>
@@ -387,7 +406,7 @@ function recommendSeed() {
     const t = translations[currentLang];
     const resBox = document.getElementById('wiz-result');
     resBox.style.display = 'block';
-    resBox.innerHTML = `<strong>${t.recommendPrefix} FENIKKS ${rec.name}</strong><br>${t.recommendReason}: ${t.recommendDesc} ${t.faoLabel} ${rec.fao}, ${t.yieldAmountLabel.toLowerCase()} ${rec.yield} ${t.yieldUnit}.`;
+    resBox.innerHTML = `<strong>${t.recommendPrefix} FENIKKS ${rec.name}</strong><br>${t.recommendReason}: ${t.recommendDesc} ${t.faoLabel} ${rec.fao}, ${t.yieldAmountLabel.toLowerCase()} ${rec.yield} ${t.yieldUnit}`;
 }
 
 function calculateSeeds() {
@@ -468,7 +487,7 @@ const seedVideos = [
     { name: 'Афина+ФАО 380', videoUrl: 'Afina FAO380.mp4'},
     { name: 'Эрос, ФАО 650', videoUrl: 'Eros+FAO650.mp4' },
     { name: 'ФАО380', videoUrl: 'fao.mp4'},
-    { name: 'Афина+', videoUrl: 'afina+.mp4'}
+    { name: 'Афина+', videoUrl: 'afina+.mp4' }
 ];
 
 let currentCarouselIndex = 0;
